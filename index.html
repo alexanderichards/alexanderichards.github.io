@@ -30,7 +30,7 @@
     <div class="particles">
         <div class="particles-inner"></div>
     </div>
-    <section class="content">
+    <section class="content" id="main">
         <div class="particles" id="particles-js">
         </div>
         <div class="flex-container">
@@ -107,9 +107,9 @@
         <div>
             <h2>Proyectos recientes <i class="fab fa-github"><br></i></h2>
             <div class="repos-container">
-                <a href="https://github.com/xavierichards/tonersoft"><img src="img/rep1.png" alt="" class="repo"></a>
-                <a href="https://github.com/xavierichards/tonersoft"><img src="img/rep1.png" alt="" class="repo"></a>
-                <a href="https://github.com/xavierichards/tonersoft"><img src="img/rep1.png" alt="" class="repo"></a>
+                <a href="https://github.com/alexanderichards/tonersoft"><img src="img/rep1.png" alt="" class="repo"></a>
+                <a href="https://github.com/alexanderichards/tonersoft"><img src="img/rep1.png" alt="" class="repo"></a>
+                <a href="https://github.com/alexanderichards/tonersoft"><img src="img/rep1.png" alt="" class="repo"></a>
             </div>
         </div>
 
@@ -118,7 +118,8 @@
     <section class="contactForm">
         <img src="img/AlexanderCartoon.png" alt="">
         <h3>Gracias por tomarse el tiempo de comunicarse, <br> ¿Como puedo ayudarte hoy?</h3>
-        <form action="" method="">
+        <h4 id="errorMessage">Por favor llena todos los datos de contacto.</h4>
+        <form action="" method="" id="form">
             <div>
                 <label for="name">Nombre:
                     <input type="text" name="name" id="name" required>
@@ -131,8 +132,9 @@
             <label for="message">Mensaje: 
                 <textarea name="message" id="message" rows="8" cols="20"></textarea required>
             </label>
-            <button type="submit">Enviar<i class="fas fa-envelope"
-                style="margin-left: 10px;"></i></button>
+            <button type="submit" id="btnsend"><span id="enviarHtml">Enviar</span><i id="iconMsg" class="fas fa-envelope"
+                style="margin-left: 10px;"></i><i style="margin-left: 10px;" id="iconLoader" class="fas fa-circle-notch"></i>
+            </button>
         </form>
     </section>
 
@@ -144,8 +146,11 @@
             <p>Hecho por mi | 2020</p>
         </div>
     </footer>
-    <script src="js/particles.js"></script>
+    <script src="js/particles.js"></script>   
+    <script src ="js/swal.js"></script>
+    <script src="js/jquery.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/jq.js"></script>
 </body>
 
 </html>
