@@ -58,7 +58,14 @@ document.addEventListener("DOMContentLoaded", (event) => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(data)
-        })
+        }).catch(error => {
+            errorMsg.style.display = "none"
+            iconLoader.style.display = "none";
+            iconMsg.style.display = "inline-block";
+            enviarHtml.innerHTML = "Enviar";
+            swal("Algo salio mal", "Intenta nuevamente", "error")
+            return error;
+        });
         return response;
     }
 });
