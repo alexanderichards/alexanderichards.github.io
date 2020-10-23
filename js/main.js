@@ -12,9 +12,9 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        const nameValue = document.getElementById('name').value;
-        const emailValue = document.getElementById('email').value;
-        const messageValue = document.getElementById('message').value;
+        let nameValue = document.getElementById('name').value;
+        let emailValue = document.getElementById('email').value;
+        let messageValue = document.getElementById('message').value;
 
         const message = `<div>${messageValue}<br><br><hr>from: ${nameValue}<br>email: ${emailValue}</div>`;
 
@@ -36,9 +36,9 @@ document.addEventListener("DOMContentLoaded", (event) => {
                 enviarHtml.innerHTML = "Enviar";
                 swal("¡Esta hecho!", "Tu mensaje fue enviado exitosamente", "success")
                     .then(() => {
-                        $("#name").val("");
-                        $("#email").val("");
-                        $("#message").val("");
+                        nameValue = '';
+                        emailValue = '';
+                        messageValue = '';
                         location.replace("#main");
                     });
             } else {
