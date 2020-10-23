@@ -12,16 +12,16 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        let nameValue = document.getElementById('name').value;
-        let emailValue = document.getElementById('email').value;
-        let messageValue = document.getElementById('message').value;
+        let nameInput = document.getElementById('name');
+        let emailInput = document.getElementById('email');
+        let messageInput = document.getElementById('message');
 
-        const message = `<div>${messageValue}<br><br><hr>from: ${nameValue}<br>email: ${emailValue}</div>`;
+        const message = `<div>${messageInput.value}<br><br><hr>from: ${nameInput.value}<br>email: ${emailInput.value}</div>`;
 
         const formData = {
             message: message,
         }
-        if (nameValue == "" || emailValue == "" || messageValue == "") {
+        if (nameInput.value == "" || emailInput.value == "" || messageInput.value == "") {
             errorMsg.style.display = "block";
         } else {
             iconLoader.style.display = "inline-block";
@@ -36,9 +36,9 @@ document.addEventListener("DOMContentLoaded", (event) => {
                 enviarHtml.innerHTML = "Enviar";
                 swal("¡Esta hecho!", "Tu mensaje fue enviado exitosamente", "success")
                     .then(() => {
-                        nameValue = '';
-                        emailValue = '';
-                        messageValue = '';
+                        nameInput.value = "";
+                        emailInput.value = "";
+                        messageInput.value = "";
                         location.replace("#main");
                     });
             } else {
