@@ -562,7 +562,6 @@ form{
 
     .content-left, .content-right{
         display: block;
-        justify-content: none;
         margin: auto;
         text-align: center;
     }

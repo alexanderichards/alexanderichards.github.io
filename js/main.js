@@ -1,121 +1,64 @@
-particlesJS.load('particles-js', '../particles.json', function () {
-  console.log('callback - particles.js config loaded');
-});
+document.addEventListener("DOMContentLoaded", (event) => {
+    particlesJS.load('particles-js', 'particles.json');
 
-particlesJS('particles-js', {
-  "particles": {
-    "number": {
-      "value": 80,
-      "density": {
-        "enable": true,
-        "value_area": 800
-      }
-    },
-    "color": {
-      "value": "#ffffff"
-    },
-    "shape": {
-      "type": "circle",
-      "stroke": {
-        "width": 0,
-        "color": "#000000"
-      },
-      "polygon": {
-        "nb_sides": 5
-      },
-      "image": {
-        "src": "img/github.svg",
-        "width": 100,
-        "height": 100
-      }
-    },
-    "opacity": {
-      "value": 0.2,
-      "random": false,
-      "anim": {
-        "enable": false,
-        "speed": 0.1,
-        "opacity_min": 0.1,
-        "sync": false
-      }
-    },
-    "size": {
-      "value": 5,
-      "random": true,
-      "anim": {
-        "enable": false,
-        "speed": 40,
-        "size_min": 0.1,
-        "sync": false
-      }
-    },
-    "line_linked": {
-      "enable": true,
-      "distance": 150,
-      "color": "#ffffff",
-      "opacity": 0.1,
-      "width": 1
-    },
-    "move": {
-      "enable": true,
-      "speed": 6,
-      "direction": "none",
-      "random": false,
-      "straight": false,
-      "out_mode": "out",
-      "attract": {
-        "enable": false,
-        "rotateX": 600,
-        "rotateY": 1200
-      }
-    }
-  },
-  "interactivity": {
-    "detect_on": "canvas",
-    "events": {
-      "onhover": {
-        "enable": true,
-        "mode": "repulse"
-      },
-      "onclick": {
-        "enable": true,
-        "mode": "push"
-      },
-      "resize": true
-    },
-    "modes": {
-      "grab": {
-        "distance": 400,
-        "line_linked": {
-          "opacity": 1
+    const errorMsg = document.getElementById('errorMessage');
+    const enviarHtml = document.getElementById('enviarHtml');
+    const iconMsg = document.getElementById('iconMsg');
+    const iconLoader = document.getElementById('iconLoader');
+    const form = document.getElementById('form');
+
+    iconLoader.style.display = "none";
+    errorMsg.style.display = "none";
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const nameValue = document.getElementById('name').value;
+        const emailValue = document.getElementById('email').value;
+        const messageValue = document.getElementById('message').value;
+
+        const message = `<div>${messageValue}<br><br><hr>from: ${nameValue}<br>email: ${emailValue}</div>`;
+
+        const formData = {
+            message: message,
         }
-      },
-      "bubble": {
-        "distance": 400,
-        "size": 40,
-        "duration": 2,
-        "opacity": 8,
-        "speed": 3
-      },
-      "repulse": {
-        "distance": 200
-      },
-      "push": {
-        "particles_nb": 4
-      },
-      "remove": {
-        "particles_nb": 2
-      }
+        if (nameValue == "" || emailValue == "" || messageValue == "") {
+            errorMsg.style.display = "block";
+        } else {
+            iconLoader.style.display = "inline-block";
+            iconMsg.style.display = "none";
+            enviarHtml.innerHTML = "Enviando...";
+            const url = 'https://lp2r8uah15.execute-api.us-east-1.amazonaws.com/Prod/send'
+            const statusCode = await consultarApi(url, formData).then(data => data.status);
+            if (statusCode === 200) {
+                errorMsg.style.display = "none"
+                iconLoader.style.display = "none";
+                iconMsg.style.display = "inline-block";
+                enviarHtml.innerHTML = "Enviar";
+                swal("¡Esta hecho!", "Tu mensaje fue enviado exitosamente", "success")
+                    .then(() => {
+                        $("#name").val("");
+                        $("#email").val("");
+                        $("#message").val("");
+                        location.replace("#main");
+                    });
+            } else {
+                errorMsg.style.display = "none"
+                iconLoader.style.display = "none";
+                iconMsg.style.display = "inline-block";
+                enviarHtml.innerHTML = "Enviar";
+                swal("Algo salio mal", "Intenta nuevamente", "error")
+            }
+        }
+    })
+
+    const consultarApi = async (url, data) => {
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        return response;
     }
-  },
-  "retina_detect": true,
-  "config_demo": {
-    "hide_card": false,
-    "background_color": "#b61924",
-    "background_image": "",
-    "background_position": "50% 50%",
-    "background_repeat": "no-repeat",
-    "background_size": "cover"
-  }
-}
-);
+});
