@@ -27,8 +27,17 @@ html{
 }
 
 h1{
-    font-weight: 700;
-    font-size: 5rem;
+    font-weight: 600;
+    font-size: 4.5rem;
+}
+
+h1 span{
+    font-size: 4.1rem;
+    font-weight: 300;
+}
+
+.content-right hr{
+    border: 1px solid rgba(46, 46, 46, 0.157);
 }
 
 #lastName{
@@ -519,6 +528,16 @@ form{
         font-weight: 700;
         font-size: 3rem;
     }
+
+    h1 span{
+        font-size: 2.5rem;
+    }
+
+    .content-right hr{
+        border: 1px solid rgba(46, 46, 46, 0.157);
+        width: 400px;
+        /* margin: auto; */
+    }
     
     h2{
         font-weight: 300;
@@ -545,6 +564,11 @@ form{
         z-index: 2;
     }
 
+    .content-right hr{
+        margin: auto;
+    }
+
+
     .flex-container{
         height: calc(100vh - 41px);
         display: grid;
@@ -555,7 +579,7 @@ form{
     }
 
     .showcase-content div img{
-        width: 300px;
+        width: 250px;
         border: 3px solid var(--blue-1-color);
         border-radius: 50%;
         box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
@@ -590,6 +614,11 @@ form{
         /* height: 100vh; */
     }
 
+    h1 span{
+        font-size: 2rem;
+    }
+
+    
     .knowledge{
         grid-template-columns: repeat(1, 1fr);
         max-width: 480px;
@@ -646,6 +675,11 @@ form{
         font-weight: 300;
         font-size: 1.7rem !important;
     }
+
+    .content-right hr{
+        width: 300px;
+    }
+
 
     p{
         font-size: 1.2rem !important;
